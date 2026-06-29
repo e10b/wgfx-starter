@@ -5,8 +5,10 @@ set(SDL_STATIC ON CACHE BOOL "" FORCE)
 set(SDL_SHARED OFF CACHE BOOL "" FORCE)
 set(SDL_TESTS OFF CACHE BOOL "" FORCE)
 set(SDL_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(GLM_BUILD_LIBRARY OFF CACHE BOOL "" FORCE)
 
 add_subdirectory(deps/sdl3)
+add_subdirectory(deps/glm)
 add_subdirectory(deps/wgfx)
 
 file(GLOB_RECURSE WGFX_STARTER_SOURCES CONFIGURE_DEPENDS
@@ -16,9 +18,11 @@ file(GLOB_RECURSE WGFX_STARTER_SOURCES CONFIGURE_DEPENDS
 
 add_executable(wgfx_starter ${WGFX_STARTER_SOURCES})
 
-target_link_libraries(wgfx_starter PRIVATE wgfx)
+target_compile_definitions(wgfx_starter PRIVATE
+    RESOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}/res/"
+)
 
-target_compile_definitions(wgfx_starter PRIVATE RESOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}/res/")
+target_link_libraries(wgfx_starter PRIVATE wgfx glm::glm)
 
 target_copy_webgpu_binaries(wgfx_starter)
 

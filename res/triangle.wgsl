@@ -1,6 +1,5 @@
 struct VertIn {
-	@location(0) position : vec2f,
-	@location(1) color : vec3f,
+	@location(0) position : vec3f,
 }
 
 struct VertOut {
@@ -8,11 +7,17 @@ struct VertOut {
 	@location(0) color : vec3f,
 }
 
+struct Transform {
+	matrix : mat4x4f,
+};
+
+@group(0) @binding(0) var<uniform> transform : Transform;
+
 @vertex
 fn vs_main(v: VertIn) -> VertOut {
 	var out: VertOut;
-	out.position = vec4f(v.position, 0.0, 1.0);
-	out.color = v.color;
+	out.position = transform.matrix * vec4f(v.position, 1.0);
+	out.color = v.position * 0.5 + vec3f(0.5);
 	return out;
 }
 
