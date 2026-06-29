@@ -9,9 +9,12 @@ set(SDL_EXAMPLES OFF CACHE BOOL "" FORCE)
 add_subdirectory(deps/sdl3)
 add_subdirectory(deps/wgfx)
 
-add_executable(wgfx_starter
-    src/main.cpp
+file(GLOB_RECURSE WGFX_STARTER_SOURCES CONFIGURE_DEPENDS
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h"
 )
+
+add_executable(wgfx_starter ${WGFX_STARTER_SOURCES})
 
 target_link_libraries(wgfx_starter PRIVATE wgfx)
 
