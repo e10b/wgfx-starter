@@ -18,6 +18,10 @@ file(GLOB_RECURSE WGFX_STARTER_SOURCES CONFIGURE_DEPENDS
 
 add_executable(wgfx_starter ${WGFX_STARTER_SOURCES})
 
+target_compile_definitions(wgfx_starter PRIVATE
+    RESOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}/res/"
+)
+
 target_link_libraries(wgfx_starter PRIVATE wgfx glm::glm)
 
 target_copy_webgpu_binaries(wgfx_starter)
