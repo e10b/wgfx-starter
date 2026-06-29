@@ -11,14 +11,15 @@ int main() {
 	Window& window = Window::Instance();
 
 	std::vector<float> verts = {
-		0.0f, 0.6f,
-		-0.6f, -0.5f,
-		0.6f, -0.5f,
+		0.0f, 0.6f, 1.f, 0.1f, 0.1f,
+		-0.6f, -0.5f, 0.1f, 0.9f, 0.2f,
+		0.6f, -0.5f, 0.1f, 0.3f, 1.0f,
 	};
 
 	wgfx::VertexBuffer* vbo = wgfx::createVertexBuffer(verts);
 	vbo->setTopology(PrimitiveTopology::TriangleList);
 	vbo->setAttribute(0, wgfx::vec2f, 0);
+	vbo->setAttribute(1, wgfx::vec3f, 2);
 
 	wgfx::IndexBuffer* ibo = wgfx::createIndexBuffer(std::vector<uint16_t> { 0, 1, 2 });
 	wgfx::Pipeline* pipeline = wgfx::loadPipeline(
@@ -39,7 +40,7 @@ int main() {
 		wgfx::start();
 
 		pass.prepare();
-			pass.draw(pipeline);
+		pass.draw(pipeline);
 		pass.end();
 
 		window.draw();
