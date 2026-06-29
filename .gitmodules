@@ -1,0 +1,6 @@
+[submodule "deps/wgfx"]
+	path = deps/wgfx
+	url = git@github.com:e10b/wgfx.git
+[submodule "deps/sdl3"]
+	path = deps/sdl3
+	url = https://github.com/libsdl-org/SDL.git
