@@ -1,6 +1,6 @@
 # wgfx-starter
 
-Smallest native SDL3 application that initializes `wgfx` and clears the window.
+Smallest project that initializes SDL3 and `wgfx` without creating a window.
 
 ```sh
 cmake -S . -B build

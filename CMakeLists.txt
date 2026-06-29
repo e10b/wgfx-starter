@@ -5,6 +5,7 @@ set(SDL_STATIC ON CACHE BOOL "" FORCE)
 set(SDL_SHARED OFF CACHE BOOL "" FORCE)
 set(SDL_TESTS OFF CACHE BOOL "" FORCE)
 set(SDL_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(WGFX_BUILD_SDL_BRIDGE OFF CACHE BOOL "" FORCE)
 
 add_subdirectory(deps/sdl3)
 add_subdirectory(deps/wgfx)
@@ -13,7 +14,7 @@ add_executable(wgfx_starter
     src/main.cpp
 )
 
-target_link_libraries(wgfx_starter PRIVATE wgfx)
+target_link_libraries(wgfx_starter PRIVATE wgfx SDL3-static)
 
 target_copy_webgpu_binaries(wgfx_starter)
 
